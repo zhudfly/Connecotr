@@ -1,0 +1,92 @@
+apply plugin: 'com.android.library'
+
+android {
+  compileSdkVersion 27
+
+
+
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 27
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      postprocessing {
+        removeUnusedCode false
+        removeUnusedResources false
+        obfuscate false
+        optimizeCode false
+        proguardFile 'proguard-rules.pro'
+      }
+    }
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  implementation 'com.android.support:appcompat-v7:27.1.1'
+  implementation 'com.android.support:exifinterface:27.1.1'
+
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'com.android.support.test:runner:1.0.2'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+  if (needNet.toBoolean()) {
+    implementation project(path: ':networkconnector')
+  } else if (needRxJava.toBoolean()) {
+
+  }
+
+  if (needDB.toBoolean()) implementation 'org.greenrobot:greendao:3.2.2'
+
+  //https://github.com/koush/ion - 文件下载、网路请求框架
+  if (needION.toBoolean()) implementation 'com.koushikdutta.ion:ion:2.+'
+
+  //https://muyangmin.github.io/glide-docs-cn/  图片加载框架
+  if (needGlide.toBoolean()) {
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+  }
+  //http://frescolib.org/  图片加载框架
+  if (needFresco.toBoolean()) implementation 'com.facebook.fresco:fresco:1.9.0'
+  //http://square.github.io/picasso/  图片加载框架
+  if (needPicasso.toBoolean()) implementation 'com.squareup.picasso:picasso:2.71828'
+  //http://greenrobot.org/eventbus/  事件传递框架
+  if (needEventBus.toBoolean()) implementation 'org.greenrobot:eventbus:3.1.1'
+}
+
+//以下设置为GreenDao的使用需要添加的配置
+buildscript {
+  repositories {
+    jcenter()
+    if (needDB.toBoolean()) mavenCentral() // add repository
+    if (needGlide.toBoolean()) {
+      mavenCentral()
+      google()
+    }
+  }
+  dependencies {
+    if (needDB.toBoolean()) classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // add plugin
+
+    //http://jakewharton.github.io/butterknife/  Bind Android views and callbacks to fields and methods.
+    if (needButterKnife.toBoolean()) classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+  }
+}
+if (needDB.toBoolean()) apply plugin: 'org.greenrobot.greendao'
+
+
+allprojects {
+  dependencies {
+    if (needButterKnife.toBoolean()) {
+      implementation 'com.jakewharton:butterknife:8.8.1'
+      annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    }
+  }
+}
+
