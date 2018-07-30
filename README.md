@@ -1,2 +1,2 @@
-# Connecotr
-An Android Collection OF Use
+# Connector
+An Android Utils Collection Of Use
