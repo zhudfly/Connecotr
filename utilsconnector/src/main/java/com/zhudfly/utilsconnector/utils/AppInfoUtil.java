@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * 与App信息有关的辅助类
+ * App info helper
  * Created by zhudf on 2018/5/9.
  */
 

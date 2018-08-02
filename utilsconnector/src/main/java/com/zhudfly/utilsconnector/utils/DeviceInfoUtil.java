@@ -16,23 +16,20 @@ import static android.Manifest.permission.ACCESS_WIFI_STATE;
 import static android.Manifest.permission.INTERNET;
 
 /**
- * 与设备信息有关的辅助类
+ * Device info helper
  * Created by zhudf on 2018/5/2.
  */
 
 public class DeviceInfoUtil {
 
-    // -------------------- 获得MAC地址 --------------------
 
-    // 无效的mac地址
-    // 从6.0版本之后系统中可获得地址的接口都会返回”02:00:00:00:00:00“
-    // 而不是真正的mac地址
+    // if get the wrong mac address, system (after 6.0) will return '02:00:00:00:00:00'
+    // not the real mac address
     private static final String INVALID_MAC_ADDRESS = "02:00:00:00:00:00";
 
     /**
-     * 获得手机的物理地址.
      * {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />},
-     * {@code <uses-permission android:name="android.permission.INTERNET" />}</p>
+     * {@code <uses-permission android:name="android.permission.INTERNET" />}
      *
      * @return the MAC address
      */
@@ -136,9 +133,7 @@ public class DeviceInfoUtil {
     private static final String LOCAL_IP_ADDRESS = "127.0.0.1";
 
     /**
-     * 获得当前手机连接网络的IP地址，不返回ipv6的地址
-     * 该IP地址在WiFi连接的情况下是内网IP
-     * 需要获得外网地址，需要使用网络请求，底层不实现
+     *  Get IP Address (not IPV6)
      * @return IP Address
      */
     public static String getIPAddress() {
@@ -186,8 +181,7 @@ public class DeviceInfoUtil {
     }
 
     /**
-     * 获得设备的唯一标识，实际使用时选择合适的方案
-     * @return
+     * @return Device Id
      */
     public static String getDeviceId(){
         return "";

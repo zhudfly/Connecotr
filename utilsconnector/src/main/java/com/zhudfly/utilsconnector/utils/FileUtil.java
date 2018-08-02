@@ -20,25 +20,25 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 
 /**
- * 文件操作相关的辅助类
+ * File operation helper
  * Created by zhudf on 2018/5/4.
  */
 
 public class FileUtil {
 
     /**
-     * 检查SD卡是否存在
+     * check if sdcard exist
      */
     public static boolean checkSDcard() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
-     * 检测路径是否存在，不存在就创建
+     * check path, create if not exist
      */
     public static void checkExist(String path) {
         String sdStatus = Environment.getExternalStorageState();
-        if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
+        if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
             Log.e("checkExist", "SD card is not avaiable/writeable right now.");
             return;
         }
@@ -50,11 +50,11 @@ public class FileUtil {
     }
 
     /**
-     * 复制单个文件
+     * copy single file
      *
-     * @param oldPath String 原文件路径 如：c:/test1.txt
-     * @param newPath String 复制后路径 如：f:/test2.txt
-     * @return String 返回拷贝后的文件路径
+     * @param oldPath
+     * @param newPath
+     * @return String new file path
      */
     public static String copyFile(String oldPath, String newPath) {
         try {
@@ -68,12 +68,12 @@ public class FileUtil {
             int byteSum = 0;
             int byteRead;
             File oldFile = new File(oldPath);
-            if (oldFile.exists()) { //文件存在时
-                InputStream inStream = new FileInputStream(oldPath); //读入原文件
+            if (oldFile.exists()) {
+                InputStream inStream = new FileInputStream(oldPath);
                 FileOutputStream fs = new FileOutputStream(dest);
                 byte[] buffer = new byte[1444];
                 while ((byteRead = inStream.read(buffer)) != -1) {
-                    byteSum += byteRead; //字节数 文件大小
+                    byteSum += byteRead;
                     System.out.println(byteSum);
                     fs.write(buffer, 0, byteRead);
                 }
@@ -89,11 +89,11 @@ public class FileUtil {
     }
 
     /**
-     * 移动文件
+     * move file
      *
-     * @param srcFilePath 源文件完整路径
-     * @param destDirPath 目的目录完整路径
-     * @return 文件移动成功返回最后的路径，否则返回空
+     * @param srcFilePath
+     * @param destDirPath
+     * @return if success return path, else return ""
      */
     public static String moveFile(String srcFilePath, String destDirPath) {
         File srcFile = new File(srcFilePath);
@@ -110,29 +110,27 @@ public class FileUtil {
     }
 
     /**
-     * 将图片添加到系统图库，并通知图库刷新
+     * insert photo into system photos and fresh it
      *
-     * @param imagePath 图片路径
-     * @param fileName 文件名
+     * @param imagePath
+     * @param fileName
      */
     public static boolean insertPicToSysMedia(
         @NonNull Context context, String imagePath, String fileName) {
-        // 其次把文件插入到系统图库
         try {
             MediaStore.Images.Media.insertImage(context.getContentResolver(), imagePath, fileName, null);
         } catch (FileNotFoundException e) {
             LogUtil.printStackTrace(e);
             return false;
         }
-        // 最后通知图库更新
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + imagePath)));
         return true;
     }
 
     /**
-     * 删除文件
+     * delete file
      *
-     * @param path 要删除的文件的路径
+     * @param path
      */
     public static void deleteFile(String path) {
         File file = new File(path);
@@ -142,9 +140,9 @@ public class FileUtil {
     }
 
     /**
-     * 递归删除文件/文件夹
+     * delete file recursively
      *
-     * @param file 要删除的根目录
+     * @param file root path
      */
     public static void recursionDeleteFile(@NonNull File file) {
         if (file.isFile()) {
@@ -165,7 +163,7 @@ public class FileUtil {
     }
 
     /**
-     * 从assets下读取文件
+     * get file from assets
      */
     public static String getFromAssets(@NonNull Context mContext, String fileName) {
         InputStreamReader inputReader = null;
@@ -195,7 +193,7 @@ public class FileUtil {
     }
 
     /**
-     * 获取文件MIME TYPE
+     * get file`s MIME TYPE
      */
     public static String getMimeType(@NonNull File file) {
         String extension = getExtension(file);
@@ -203,7 +201,7 @@ public class FileUtil {
     }
 
     /**
-     * 获取文件后缀
+     * get file`s suffix
      */
     private static String getExtension(@NonNull File file) {
         String suffix = "";
@@ -216,9 +214,9 @@ public class FileUtil {
     }
 
     /**
-     * 获取文件夹大小
+     * get size of file
      *
-     * @param file File实例
+     * @param file
      * @return long
      */
     public static long getFolderSize(@NonNull File file) {
@@ -240,9 +238,9 @@ public class FileUtil {
     }
 
     /**
-     * 格式化文件大小
-     * @param size 文件的实际大小（byte）
-     * @return 格式化以后的大小 $TB$GB$MB
+     * format file size
+     * @param size (byte)
+     * @return $TB$GB$MB
      */
     public static String getFormatSize(double size) {
         double kiloByte = size / 1024;

@@ -8,16 +8,15 @@ import android.util.TypedValue;
 import android.view.View;
 
 /**
- * 与屏幕分辨率有关的辅助类
+ * Resolution helper
  * Created by zhudf on 2018/5/3.
  */
 
 public class ResolutionUtil {
 
     /**
-     * 获取屏幕宽度
-     *
-     * @param context 上下文
+     * get window width
+
      * @return window width
      */
     public static int getWindowWidth(@NonNull Context context) {
@@ -27,9 +26,8 @@ public class ResolutionUtil {
     }
 
     /**
-     * 获取屏幕高度
-     *
-     * @param context 上下文
+     * get window height
+
      * @return window height
      */
     public static int getWindowHeight(@NonNull Context context) {
@@ -39,10 +37,9 @@ public class ResolutionUtil {
     }
 
     /**
-     * sp 转 px
-     *
-     * @param context 上下文
-     * @param spValue 需要转换的sp值
+     * sp to px
+
+     * @param spValue
      */
     public static int sp2px(@NonNull Context context, float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
@@ -50,11 +47,9 @@ public class ResolutionUtil {
     }
 
     /**
-     * dp 转 px
-     *
-     * @param context 上下文
-     * @param dpVal 需要转换的dp值
-     * @return 转换后的px值
+     * dp to px
+
+     * @param dpVal
      */
     public static int dp2px(@NonNull Context context, float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context.getResources()
@@ -62,11 +57,9 @@ public class ResolutionUtil {
     }
 
     /**
-     * px 转 dp
-     *
-     * @param context 上下文
-     * @param pxValue 需要转换的px值
-     * @return 转换后的dp值
+     * px to dp
+
+     * @param pxValue
      */
     public static int px2dp(@NonNull Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -74,11 +67,9 @@ public class ResolutionUtil {
     }
 
     /**
-     * px 转 sp
-     *
-     * @param context 上下文
-     * @param pxValue 需要转换的px值
-     * @return 转换后的sp值
+     * px to sp
+
+     * @param pxValue
      */
     public static int px2sp(@NonNull Context context, float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
@@ -86,9 +77,9 @@ public class ResolutionUtil {
     }
 
     /**
-     * 获得控件的高度
+     * get view height
      *
-     * @param view 需要获取高度的控件
+     * @param view
      * @return view‘s height
      */
     public static int getMeasureHeight(@NonNull View view) {
@@ -100,9 +91,9 @@ public class ResolutionUtil {
     }
 
     /**
-     * 获得控件的宽度
+     * get view width
      *
-     * @param view 需要获取宽度的控件
+     * @param view
      * @return view‘s width
      */
     public static int getMeasureWidth(@NonNull View view) {
@@ -114,9 +105,8 @@ public class ResolutionUtil {
     }
 
     /**
-     * 获得状态栏的高度
-     *
-     * @param context 上下文
+     * get status bar height
+
      * @return status bar’s height
      */
     public static int getStatusBarHeight(@NonNull Context context) {

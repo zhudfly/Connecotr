@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 与字符串相关的辅助类，eg. verify email、phone
+ * String helper eg. verify email、phone
  * Created by zhudf on 2018/5/9.
  */
 
@@ -33,7 +33,7 @@ public class StringUtil {
 
 
     /**
-     * 判断是否是手机号，只判断以‘1’开始且为11位
+     * check mobile phone , just check start with '1' and 11 bits
      * @param mobileNumber the mobileNumber to be examined
      * @return true if mobileNumber is valid
      */

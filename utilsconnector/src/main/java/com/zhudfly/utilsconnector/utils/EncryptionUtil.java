@@ -4,16 +4,16 @@ import android.text.TextUtils;
 import java.security.MessageDigest;
 
 /**
- * 加密、解密相关的辅助类
+ * Encryption helper
  * Created by zhudf on 2018/5/8.
  */
 
 public class EncryptionUtil {
 
     /**
-     * 对字节数组进行加密
-     * @param buffer 需要加密的字节数组
-     * @return 加密后的字符串
+     * encryption by md5
+     * @param buffer
+     * @return
      */
     public static String md5(byte[] buffer) {
         char hexDigits[] = {
@@ -38,11 +38,10 @@ public class EncryptionUtil {
         }
     }
 
-
     /**
-     * 对字符串进行加密
-     * @param string 需要加密的字符串
-     * @return 加密后的字符串
+     * encryption by md5
+     * @param string
+     * @return
      */
     public static String md5(String string) {
         if(TextUtils.isEmpty(string))

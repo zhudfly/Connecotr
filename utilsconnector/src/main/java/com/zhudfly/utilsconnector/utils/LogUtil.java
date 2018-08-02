@@ -3,7 +3,7 @@ package com.zhudfly.utilsconnector.utils;
 import android.util.Log;
 
 /**
- * 打印Log相关的辅助类，主要是控制Debug/Release下是否打印
+ * Log helper
  * Created by zhudf on 2018/5/9.
  */
 
@@ -29,7 +29,7 @@ public class LogUtil {
     }
 
     /**
-     * 记录错误日志 (预留，不同的项目需求不同)
+     * log exception
      * @param TAG tag
      * @param ex error
      */
@@ -48,7 +48,7 @@ public class LogUtil {
     }
 
     /**
-     * Send a {@link #} log message and log the exception.
+     * Send a log message and log the exception.
      *
      * @param tag Used to identify the source of a log message. It usually
      * identifies the class or activity where the log call occurs.
@@ -80,7 +80,7 @@ public class LogUtil {
     }
 
     /**
-     * Send a {@link #} log message and log the exception.
+     * Send a log message and log the exception.
      *
      * @param tag Used to identify the source of a log message. It usually
      * identifies the class or activity where the log call occurs.
@@ -94,7 +94,7 @@ public class LogUtil {
     }
 
     /**
-     * Send an {@link #} log message.
+     * Send a log message.
      *
      * @param tag Used to identify the source of a log message. It usually
      * identifies the class or activity where the log call occurs.
@@ -113,7 +113,7 @@ public class LogUtil {
     }
 
     /**
-     * Send a {@link #} log message and log the exception.
+     * Send a log message and log the exception.
      *
      * @param tag Used to identify the source of a log message. It usually
      * identifies the class or activity where the log call occurs.
